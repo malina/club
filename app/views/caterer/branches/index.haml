@@ -1,0 +1,42 @@
+= render 'caterers/units/billboard'
+/ - flash.each do |key, value|
+/   = content_tag(:div, value, :class => "flash #{key}")
+.inner-content
+  %aside.left-column
+    = render 'caterers/edit/left_menu'
+  .content
+    .form.edit-branches{"ng-controller" => "CrudCtrl", "ng-init" => "master = #{@caterer.branches.to_json}; items = #{@caterer.branches.to_json}"}
+      .flash.success{"ng-show" => "show_success"}
+        Информация о заведении успешно сохранена
+        .close{"ng-click" => "show_success = false"}
+      .form-row
+        .actions.top
+          %a.btn.green.add{"ng-click" => "add()"} Добавить
+          -# Поправить стили
+          %a.btn.green.save{"ng-click" => "save()", "ng-show" => "isChanged()"} Сохранить изменения
+      .branche{"ng-repeat" => "branch in items"}
+        .form-row
+          .label
+            %label{"for" => "name_{{branch.$$hashKey}}"} Название:
+          .field
+            %input.input-text{"id" => "name_{{branch.$$hashKey}}", "type" => "text", "ng-model" => "branch.name"}
+        .form-row
+          .label
+            %label{"for" => "phone_{{branch.$$hashKey}}"} Телефон:
+          .field
+            %input.input-text{"id" => "phone_{{branch.$$hashKey}}", "type" => "text", "ng-model" => "branch.phone"}
+        .form-row 
+          .label
+            %label{"for" => "address_{{branch.$$hashKey}}"} Адрес:
+          .field
+            %textarea.text-area{"ng-model" => "branch.address", "id" => "address_{{branch.$$hashKey}}"}
+            %div.additional-field
+              %input{"type" => "checkbox", "ng-model" => "branch.pickup_available", "id" => "pickup_available_{{branch.$$hashKey}}"}
+              %label{"for" => "pickup_available_{{branch.$$hashKey}}"} Возможен самовывоз
+        .form-row{"ng-show" => "branch.pickup_available"}
+          .label
+            %label{"for" => "pickup_discount_{{branch.$$hashKey}}"} Скидка при самовывозе:
+          .field
+            %input.input-text.sale-self-export{"type" => "text", "ng-model" => "branch.pickup_discount", "id" => "pickup_discount_{{branch.$$hashKey}}"}
+        .delete-this
+          %span.anchor{"ng-click" => "delete(branch)"} удалить

@@ -1,0 +1,32 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import "vars";
+@import "compass/reset";
+@import "compass/css3";
+@import "mixin";
+@import "grid";
+@import "layout";
+@import "main";
+@import "form_elements";
+body{
+font-family: 'Open Sans', sans-serif;
+font-size: 9.75pt;
+color: #000000;
+//background: #3c3b3a;
+background: #eeeae7;
+min-width: 1000px;
+}
+
+@media screen and (min-width: $window-large) {
+@import "1280";
+}
+@import "caterers";
+@import "caterer_reviews";
+@import "person_profile";
+@import "person_orders";
+@import "footer";
+@import "popups";
+
+
+.field_with_errors { display: inline; }
+
+.field_with_errors input {  @extend .error };

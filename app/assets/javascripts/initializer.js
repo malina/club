@@ -1,0 +1,1 @@
+var orderClub = angular.module('orderClub', []);

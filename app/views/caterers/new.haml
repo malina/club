@@ -1,0 +1,15 @@
+.inner-content
+  %aside.left-column
+    %nav.vertical_menu 
+      %menu 
+        %li{class: "active"} 
+          %a{href: new_caterer_path} Новое заведение
+
+  .content 
+    = form_for @caterer do |form|
+      .form.edit-main
+        = render 'caterers/units/caterer_fields', caterer: @caterer, form: form
+        .form-row
+          .actions.bottom
+            = form.submit "Сохранить изменения", class: 'btn green save'
+            %a.btn.grey.cancel{:href => '/'} Отменить

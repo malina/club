@@ -1,0 +1,165 @@
+.top-control-block
+  .inner-content
+    .restourant
+      .restourant-item
+        .item-content
+          .restourant-logo
+            = image_tag("http://placehold.it/90x90")
+          .restourant-info
+            %h2.title Му-Му
+            %span.cuisine Русская, Украинская, Японская, Китайская
+            .properties
+              .price
+                %span.icon
+                %strong от 200 р.
+              .delivery-price
+                %span.icon
+                %strong Бесплатно
+              .delivery-time
+                %span.icon
+                %strong 60 мин.
+              .raiting.raiting-kitchen 
+                %span.percent 58%
+                .icon
+                  .float
+                %strong Кухня
+              .raiting.raiting-delivery 
+                %span.percent 83%
+                .icon
+                  .float
+                %strong Доставка
+                %span.number-votes Всего 30548 голосов
+              .raiting.raiting-service 
+                %span.percent 31%
+                .icon
+                  .float
+                %strong Сервис
+            .information-tip
+              %span Минимальная сумма заказа за пределы Садового кольца — 500 р., за пределы МКАД — 1000 р. В пятницу и субботу доставка осуществляется до 6:00.
+    -#= render 'layouts/horizontal_menu'
+.inner-content
+  .content-full
+    %h3 Оставить отзыв:
+    .flash.success.non-icon
+      %a.btn.orange{:href => ""} перейти в меню 
+      Вы сможете оставить отзыв только после заказа
+
+    .leave-comment 
+      %h3 Оставить отзыв:
+      %form{:action => ""}
+        %textarea.text-area
+        %input.btn.orange{:type => "submit", :value=>"Оставить отзыв"}/ 
+        %span.alert Сначала поставьте оценки 
+        .to-rate
+          .cuisine 
+            %strong Кухня
+            //После нажатия, накинуть класс acive на соответствующий anchor
+            %span.anchor.good Хорошо
+            %span.anchor.bad Плохо
+          .delivery 
+            %strong Доставка
+            %span.anchor.good Хорошо
+            %span.anchor.bad Плохо
+          .service 
+            %strong Сервис
+            %span.anchor.good Хорошо
+            %span.anchor.bad Плохо
+  .content
+    %h3 
+      Отзывы на «Васаби»
+      %span.count (139):
+    .comments 
+      .comment
+        .comment-title
+          %strong.name Евгений
+          %span.date 19 июня в 12:34
+          %span.anchor.edit Редактировать
+          %span.anchor.delete Удалить
+          %span.anchor Комм. заведения
+          %span.anchor Комм. администрации
+        .comment-body
+          %span.text Еда очень вкусная, суши отличные, доставка тоже довольно быстрая. Вообщем то сервис отличный, рекомендую.
+        .comment-footer 
+          .rate-block
+            .cuisine
+              %strong Кухня
+              .icon.good
+            .delivery
+              %strong Доставка
+              .icon.bad
+            .service
+              %strong Сервис
+              .icon.good 
+      .comment
+        .comment-title
+          %strong.name Евгений
+          %span.date 19 июня в 12:34
+          %span.anchor.edit Редактировать
+          %span.anchor.delete Удалить
+          %span.anchor Комм. заведения
+          %span.anchor Комм. администрации
+        .comment-body
+          %span.text Еда очень вкусная, суши отличные, доставка тоже довольно быстрая. Вообщем то сервис отличный, рекомендую.
+        .comment-footer 
+          .rate-block
+            .cuisine
+              %strong Кухня
+              .icon.good
+            .delivery
+              %strong Доставка
+              .icon.bad
+            .service
+              %strong Сервис
+              .icon.good
+        .comment-response
+          .comment-title
+            %strong.name Администрация сайта
+            %span.anchor.edit Редактировать
+            %span.anchor.delete Удалить
+          %span.text Унаги спайси ролл за 390 руб совсем не стоит этих денег..просто была безвкусная...остальное все было очень вкусно) Спасибо большое!Все очень понравилось!Во время привезли и все свежее!
+        .comment-response
+          .comment-title
+            %strong.name Администрация заведения
+            %span.anchor.edit Редактировать
+          %span.text Унаги спайси ролл за 390 руб совсем не стоит этих денег..просто была безвкусная...остальное все было очень вкусно) Спасибо большое!Все очень понравилось!Во время привезли и все свежее! 
+  %aside.right-column
+    = render 'vertical_menu' 
+
+  .content-full
+    .comments
+      .comment
+        .comment-title
+          %strong.name Евгений
+          %span.date 19 июня в 12:34
+          %span.anchor.delete Удалить
+        .comment-body
+          .leave-comment 
+            %form{:action => ""}
+              %textarea.text-area
+              %input.btn.green.save{:type => "submit", :value => "Сохранить"}/
+              %span.anchor.cancel Отменить  
+              .to-rate
+                .cuisine 
+                  %strong Кухня
+                  //После нажатия, накинуть класс acive на соответствующий anchor
+                  %span.anchor.good Хорошо
+                  %span.anchor.bad Плохо
+                .delivery 
+                  %strong Доставка
+                  %span.anchor.good Хорошо
+                  %span.anchor.bad Плохо
+                .service 
+                  %strong Сервис
+                  %span.anchor.good Хорошо
+                  %span.anchor.bad Плохо
+      .comment
+        .comment-title
+          %strong.name Администрация
+          %span.date 19 июня в 12:34
+          %span.anchor.delete Удалить
+        .comment-body
+          .leave-comment 
+            %form{:action => ""}
+              %textarea.text-area
+              %input.btn.green.save{:type => "submit", :value => "Сохранить"}/
+              %span.anchor.cancel Отменить  

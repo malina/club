@@ -1,0 +1,30 @@
+= render 'caterers/units/billboard'
+.inner-content
+  %aside.left-column
+    = render 'caterers/edit/left_menu'
+  .content
+    = form_for gen, url: caterer_gen_path(@caterer) do |form|
+      .form.edit-info_seo
+        - if flash[:notice]
+          .flash.success{"ng-controller" => "SelectCtrl", "ng-show" => "!opened"}
+            Информация о заведении успешно сохранена
+            .close{"ng-click" => "opened = true"}
+        .form-row
+          .label= form.label :title, "Заголовок страницы:"
+          .field= form.text_field :title, class: 'input-text'
+        .form-row 
+          .label= form.label :description, "Описание:"
+          .field= form.text_area :description, class: "text-area"
+        .form-row 
+          .label= form.label :keywords, "Ключевые слова:"
+          .field= form.text_area :keywords, class: 'text-area'
+        .form-row
+          .label= form.label :footer_title, "Заголовок текста в футере:"
+          .field= form.text_field :footer_title, class: 'input-text'
+        .form-row
+          .label= form.label :footer_text, "Текст в футере:"
+          .field= form.text_area :footer_text, class: 'text-area'
+        .form-row
+          .actions.bottom
+            = form.submit "Сохранить изменения", class: "btn green save"
+            %a.btn.grey.cancel{href: caterer_path(@caterer)} Отменить

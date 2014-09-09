@@ -1,0 +1,238 @@
+%bb {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box; 
+box-sizing: border-box;
+}
+%nospace {
+letter-spacing: -0.31em;
+*letter-spacing: normal;
+*word-spacing: -0.36em;
+text-rendering: optimizespeed;
+word-spacing: -0.43em;
+}
+%normspace {
+letter-spacing: normal;
+word-spacing: normal;
+vertical-align: top;
+text-rendering: auto;
+}
+%noselect{
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+-o-user-select:none;
+user-select:none;
+}
+@mixin bg($name){
+background:url($url+$name) 0 0 repeat;
+}
+@mixin bgi($color, $name){
+background:$color url($url+$name) 0 0 repeat;
+}
+@mixin bgp($name, $x, $y){
+background:url($url+$name) $x $y no-repeat;
+}
+@mixin bgr($name, $x, $y, $r){
+background:url($url+$name) $x $y $r;
+}
+@mixin bp($x, $y){
+background-position: $x $y;
+}
+@mixin bxsh($x, $y, $b, $color){
+-moz-box-shadow:$x $y $b $color;
+-webkit-box-shadow:$x $y $b $color;
+box-shadow:$x $y $b $color;
+}
+@mixin trsh($shadow-1, $shadow-2, $shadow-3) {
+-webkit-box-shadow: $shadow-1, $shadow-2,$shadow-3;
+-moz-box-shadow: $shadow-1, $shadow-2,$shadow-3;
+-o-box-shadow: $shadow-1, $shadow-2,$shadow-3;
+box-shadow: $shadow-1, $shadow-2,$shadow-3;
+}
+@mixin dsh($shadow-1, $shadow-2) {
+-webkit-box-shadow: $shadow-1, $shadow-2;
+-moz-box-shadow: $shadow-1, $shadow-2;
+-o-box-shadow: $shadow-1, $shadow-2;
+box-shadow: $shadow-1, $shadow-2;
+}
+@mixin sh($shadow) {
+-webkit-box-shadow: $shadow;
+-moz-box-shadow: $shadow;
+-o-box-shadow: $shadow;
+box-shadow: $shadow;
+}
+@mixin brd($radius) {
+-webkit-border-radius: $radius;
+-moz-border-radius: $radius;
+-o-border-radius: $radius;
+-ms-border-radius: $radius;
+-khtml-border-radius: $radius;
+border-radius: $radius;
+}
+@mixin bgpi($color, $name, $x, $y){
+background:$color url($url+$name) $x $y no-repeat;
+}
+@mixin tsh($x, $y, $b, $color){
+-moz-text-shadow:$x $y $b $color;
+-webkit-text-shadow:$x $y $b $color;
+-ms-text-shadow:$x $y $b $color;
+text-shadow:$x $y $b $color;
+}
+@mixin trann{
+-webkit-transition: none;
+-moz-transition: none;
+-ms-transition: none;
+-o-transition: none;
+transition: none;
+}
+@mixin trans($t){
+-webkit-transition: all $t ease;
+-moz-transition: all $t ease;
+-ms-transition: all $t ease;
+-o-transition: all $t ease;
+transition: all $t ease;
+}
+@mixin transp($p, $t){
+-webkit-transition: $p $t ease;
+-moz-transition: $p $t ease;
+-ms-transition: $p $t ease;
+-o-transition: $p $t ease;
+transition: $p $t ease;
+}
+@mixin delay($t){
+-webkit-transition-delay:$t;
+-moz-transition-delay:$t;
+-ms-transition-delay:$t;
+-o-transition-delay:$t;
+transition-delay:$t;
+}
+@mixin spr($name){
+background: sprite-url($sp) no-repeat;
+background-position: sprite-position($sp, $name);
+}
+@mixin spp($name, $x, $y){
+background: sprite-url($sp) no-repeat;
+background-position: sprite-position($sp, $name, $x, $y);
+}
+@mixin spc($color, $name, $x, $y){
+background:$color sprite-url($sp) no-repeat;
+background-position: sprite-position($sp, $name, $x, $y);
+}
+@mixin taj{
+text-align: justify;
+font-size: 1px;
+text-align-last: justify;
+text-justify: newspaper;
+zoom: 1;
+	&:after {
+	width: 100%;
+	height: 0;
+	visibility: hidden;
+	overflow: hidden;
+	content: '';
+	display: inline-block;
+	}
+}
+.no-content{
+content:'';
+display:block;
+position:absolute;
+}
+
+@mixin inpb{
+	.input-block{
+	margin: 10px 0 15px 0;
+		strong, input, select,textarea {@extend %dib;@extend %bb;vertical-align: middle;}
+		strong{width: 140px;}
+		input,textarea{min-width: 200px;resize:none;}
+	}
+	.btn-block{
+	padding: $m3*2 0;
+	background: #f9f2ce;
+	position: relative;
+		&:before, &:after{
+		content: '';
+		display: block;
+		width: 20px;
+		top: 0;
+		bottom: 0;
+		position: absolute;
+		background: #f9f2ce;
+		}
+		&:before{left: -20px;}
+		&:after{right: -20px;}
+		.blue-rounded-btn{margin: 0 auto;display: block;}
+	}
+}
+
+@mixin required{
+	&.required{
+	position: relative;
+		&:after{
+		display: inline-block;
+		content: '';
+		width: 5px;
+		height: 5px;
+		background: #f00;
+		@include brd(100%);
+		position: absolute;
+		right: 2%;
+		top: 50%;
+		margin-top: -3px;
+		}
+	}
+}
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content; 
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+@mixin floating_tip{
+.floating-tip{
+position: absolute;
+@include trans(0.3s);
+top: 0;
+overflow: hidden;
+height: 0;
+z-index: 100;
+	.tip-content{
+	padding: $pd;
+	position: relative;
+	@include border-radius(4px);
+	background-color: #fff;
+	@include box-shadow(0 0 1px rgba(0,0,0,.05), 0 1px 3px rgba(0,0,0,.3));
+	margin: 3px;
+		&:before{
+		content: '';
+		position: absolute;
+		display: block;
+		width: 0;
+		height: 0;
+		border: 5px solid transparent;
+		border-bottom-color:#fff; 
+		top: -10px;
+		left: 50%;
+		margin-left: -4px;
+		}
+	}
+}
+&:hover{
+	.floating-tip{
+	top: 100%;
+	height: auto;
+	padding-top: 5px;
+	}
+}
+}
+@import "compass/utilities/links";
+@import "compass/utilities";
+$sp: sprite-map("/images/sprite/*.png", $layout: smart);

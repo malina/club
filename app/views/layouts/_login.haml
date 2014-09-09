@@ -1,0 +1,53 @@
+.login-block{"ng-class" => "classIf('show', popped)"}
+  .inner.row 
+    .col-1-2
+      .quick-registration{"ng-show" => "!register"}
+        %h3 Быстрая регистрация
+        %p.hint Быстрая регистрация позволит вам получать бонусные баллы и расплачиваться ими за еду
+        %span.btn.orange{"ng-click" => "register = !register"} Зарегистрироваться
+        %span.text 
+          и получить 
+          %br/ 
+          300 баллов !
+      = form_for :person, url: person_registration_path do |form|
+        .registration{"ng-show" => "register"}
+          %h3 Регистрация
+          .form-row
+            = form.label :name, "Имя:", class: "label"
+            = form.text_field :name, class: "input-text"
+          .form-row.phone
+            = form.label :phone, "Телефон:", class: "label"
+            = form.hidden_field :phone, value: "{{prefix + suffix}}"
+            %span.code +7 
+            %input.input-text.prefix{"type" => "text", "ng-model" => "prefix"}
+            %input.input-text.sufix{"type" => "text", "ng-model" => "suffix"}
+          .form-row 
+            = form.label :email, "E-mail:", class: "label"
+            = form.text_field :email, class: "input-text"
+          .form-row
+            = form.label :password, "Пароль:", class: "label"
+            = form.password_field :password, class: "input-text"
+          .form-row
+            = form.label :password_confirmation, "Подтверждение пароля:", class: "label"
+            = form.password_field :password_confirmation, class: "input-text"
+          .form-row
+            .agree 
+              = form.check_box :confirm_conditions
+              = form.label :confirm_conditions, "Согласен с условиями"
+              %a{:href => ""} пользовательского соглашения
+          .form-row 
+            = form.submit "Зарегистрироваться", class: "btn orange", name: nil
+    .col-1-2
+      = form_for :person, url: person_session_path do |form|
+        .personal-cabinet 
+          %h3 Личный кабинет
+          .form-row
+            = form.label :email, "E-mail:", class: "label"
+            = form.text_field :email, class: "input-text", placeholder: "E-mail:"
+          .form-row
+            = form.label :password, "Пароль:", class: "label"
+            = form.password_field :password, class: "input-text", placeholder: "Пароль:"
+          .form-row
+            = form.submit "войти", class: "btn orange", name: nil
+            %a.forgot-pass{:href => new_person_password_path} Забыли пароль? 
+    .close Скрыть

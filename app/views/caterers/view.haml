@@ -1,0 +1,327 @@
+.top-control-block
+  .inner-content
+    .restourant
+      .restourant-item
+        .item-content
+          .restourant-logo
+            = image_tag("http://placehold.it/90x90")
+          .restourant-info
+            %h2.title Му-Му
+            %span.cuisine Русская, Украинская, Японская, Китайская
+            .properties
+              .price
+                %span.icon
+                %strong от 200 р.
+              .delivery-price
+                %span.icon
+                %strong Бесплатно
+              .delivery-time
+                %span.icon
+                %strong 60 мин.
+              .raiting.raiting-kitchen 
+                %span.percent 58%
+                .icon
+                  .float
+                %strong Кухня
+              .raiting.raiting-delivery 
+                %span.percent 83%
+                .icon
+                  .float
+                %strong Доставка
+                %span.number-votes Всего 30548 голосов
+              .raiting.raiting-service 
+                %span.percent 31%
+                .icon
+                  .float
+                %strong Сервис
+            .information-tip
+              %span Минимальная сумма заказа за пределы Садового кольца — 500 р., за пределы МКАД — 1000 р. В пятницу и субботу доставка осуществляется до 6:00.
+    -# render 'layouts/horizontal_menu'
+.inner-content
+  %aside.left-column
+    = render 'caterers/view/left_menu'
+  .content.venue-menu
+    .special-offer 
+      %h2 У нас вы можете обменять ваши баллы!
+      %p Обменяйте ваши баллы на одно из предложенных блюд при оформлении заказа.
+      %p Чтобы воспользоваться предложением нужно войти в личный кабинет.
+      .bottom
+        .item 
+          .item-photo 
+            = image_tag("http://placehold.it/70x55")
+          .item-content 
+            .name 
+              %span.anchor Калифорния (220 г.)
+            %strong 500 баллов
+        .item 
+          .item-photo 
+            = image_tag("http://placehold.it/70x55")
+          .item-content 
+            .name 
+              %span.anchor Салат из морских водорослей (250 г.)
+            %strong 600 баллов
+        .item 
+          .item-photo 
+            = image_tag("http://placehold.it/70x55")
+          .item-content 
+            .name 
+              %span.anchor Салат из морских водорослей (250 г.)
+            %strong 600 баллов
+    .menu-grid 
+      %h2.title-menu Роллы / Традиционные
+      .menu-item
+        .item-photo
+          = image_tag("http://placehold.it/220x170")
+        .item-content 
+          %p.name Калифорния (220 г.)
+          %span.structure Краб, тобико, авокадо, огурец, омлет
+          %div.ingredients 
+            %span.anchor Ингредиенты
+          .bottom  
+            %strong.price 165 р.
+            %a.btn.green.order-this{:href => "#"} Заказать  
+      .menu-item
+        .item-photo
+          = image_tag("http://placehold.it/220x170")
+        .item-content 
+          %p.name Калифорния (220 г.) 
+          %span.structure Копченый лосось, угорь, авокадо, огурец, помидор, сыр «Филадельфия»
+          %div.ingredients.with-floating-tip 
+            %span.anchor Ингредиенты
+            -# Этому блоку нужно будет скриптом задава значение left
+            .floating-tip
+              .tip-content
+                .add-ingredients
+                  %strong Выберите дополнительные ингредиенты
+                  %form
+                    .items
+                      %ul 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Бекон
+                          %span.price +40 р. 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Анчоусы
+                          %span.price +40 р. 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Базилик
+                          %span.price +40 р. 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Брынза
+                          %span.price +40 р. 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Горчица
+                          %span.price +40 р.
+                      %ul 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Бекон
+                          %span.price +40 р. 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Анчоусы
+                          %span.price +40 р. 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Базилик
+                          %span.price +40 р. 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Брынза
+                          %span.price +40 р. 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Горчица
+                          %span.price +40 р.
+                      %ul 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Бекон
+                          %span.price +40 р. 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Анчоусы
+                          %span.price +40 р. 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Базилик
+                          %span.price +40 р. 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Брынза
+                          %span.price +40 р. 
+                        %li 
+                          .field 
+                            %input{"type" => "checkbox", }
+                            %label Горчица
+                          %span.price +40 р.
+                    .reset 
+                      %span.anchor Сбросить
+                    .bottom-block
+                      %span.left 
+                        Ингредиенты: 
+                        %strong 60 р.
+                      .right 
+                        %span.count 
+                          %span.anchor 1 шт.
+                        %span.price 
+                          Итого:
+                          %strong 310 р. 
+                        %input.btn.green{:type => "submit", :value => "Заказать"}/ 
+          .bottom  
+            %strong.price 165 р.
+            %a.btn.green.order-this{:href => "#"} Заказать  
+      .menu-item
+        .item-photo
+          = image_tag("http://placehold.it/220x170")
+        .item-content 
+          %p.name Калифорния (220 г.)
+          %span.structure 
+            Роллы: калифорния, филадельфия, канада, сяки маки, тека маки, каппа маки, ясай маки, тигровая
+            -# этому блоку тоже придется скриптом назначать положение
+            .review-window 
+              %strong Ассорти ролл (1170 г.)
+              %p Роллы: калифорния, филадельфия, канада, сяки маки, тека маки, каппа маки, ясай маки, тигровая креветка, калифорния, филадельфия, канада, сяки маки, тека маки, каппа маки, ясай маки, тигровая креветка.
+          %div.ingredients 
+            %span.anchor Ингредиенты
+          .bottom  
+            %strong.price 165 р.
+            %a.btn.green.order-this{:href => "#"} Заказать  
+      %h2.title-menu Роллы / Теплые
+      %span.sort-block 
+        .method
+          .switch-link 
+            %span.anchor Все
+          .switch-link 
+            %span.anchor Горячие
+          .switch-link.active 
+            %span.anchor Острые
+          .switch-link 
+            %span.anchor С мясом
+      .menu-item
+        .item-photo
+          = image_tag("http://placehold.it/220x170")
+        .item-content 
+          %p.name Калифорния (220 г.)
+          %span.structure Краб, тобико, авокадо, огурец, омлет
+          %div.ingredients 
+            %span.anchor Ингредиенты
+          .bottom  
+            %strong.price 165 р.
+            .more 
+              .count 2шт. 
+              %a.btn.orange.more{:href => "#"} еще  
+      .menu-item
+        .item-photo
+          = image_tag("http://placehold.it/220x170")
+        .item-content 
+          %p.name Калифорния (220 г.)
+          %span.structure Краб, тобико, авокадо, огурец, омлет
+          %div.ingredients 
+            %span.anchor Ингредиенты
+          .bottom  
+            %strong.price 165 р.
+            %a.btn.green.order-this{:href => "#"} Заказать  
+      .menu-item
+        .item-photo
+          = image_tag("http://placehold.it/220x170")
+        .item-content 
+          %p.name Калифорния (220 г.)
+          %span.structure Краб, тобико, авокадо, огурец, омлет
+          %div.ingredients 
+            %span.anchor Ингредиенты
+          .bottom  
+            %strong.price 165 р.
+            %a.btn.green.order-this{:href => "#"} Заказать
+    %h2.title-menu Доставка суши «Васаби»
+    %p.info-text «Смакуй Гейшу» - служба доставки суши и роллов в Москве. Имея при себе слаженный коллектив опытных специалистов и профессиональных поваров, служба в кратчайшие сроки доставляет заказ в назначенное место. Чем так притягивают суши? Среди большого многообразия японской кухни именно они стали всемирными любимцами. Простота приготовления, небольшая калорийность и полезность – это основные факторы, повлиявшие на теперешнюю известность самого распространенного японского блюда. Необычность вкуса добавляют васаби, соевый соус и имбирь – неотъемлемые ингредиенты японских блюд. Опытный повар знает, что искусное приготовление роллов и суши – это залог  правильного подхода к клиенту и его удовлетворения. Поэтому качество еды, приготовленной в «Смакуй Гейшу» – это один из принципов работы этой службы доставки. Всего через 90 минут после подачи заявки на доставку аппетитные роллы и суши будут красоваться на Вашем столе. Приятного аппетита!
+  %aside.basket-column
+    .basket 
+      .basket-title 
+        -# для .name нужно дописать класс .show-detail, при окрытии детальной корзины (1000px)
+        %span.name 
+          %span.anchor Корзина
+        %span.count 4
+        %span.price 1040 р.
+      %a.btn.orange{:href => "#"} Оформить зазаз  
+      -# .basket-detail  добавить класс .show, для отображения (1000px)
+      .basket-detail 
+        .inner
+          .basket-detail-content
+            .order-item
+              .main-item-info 
+                .name Филадельфия
+                .count 
+                  %span.anchor 2 шт.
+                  .floating-tip
+                    .tip-content
+                      %ul 
+                        %li 1 шт.
+                        %li 2 шт.
+                        %li 3 шт.
+                        %li 4 шт.
+                        %li 5 шт.
+                        %li 6 шт.
+                        %li 7 шт.
+                        %li 8 шт.
+                        %li 9 шт.
+                        %li 10 шт.
+                      %div.more  
+                        %span.anchor Еще
+                %strong.price 500 р.
+              .secondary-item-info
+                .ingredients 
+                  %span.anchor Ингредиенты 
+                .delete 
+                  %span.anchor удалить
+            .order-item
+              .main-item-info 
+                .name Теплый ролл с лососем
+                .count 
+                  %span.anchor 2 шт.
+                  .floating-tip
+                    .tip-content
+                      %ul 
+                        %li 1 шт.
+                        %li 2 шт.
+                        %li 3 шт.
+                        %li 4 шт.
+                        %li 5 шт.
+                        %li 6 шт.
+                        %li 7 шт.
+                        %li 8 шт.
+                        %li 9 шт.
+                        %li 10 шт.
+                      %div.more  
+                        %span.anchor Еще
+                %strong.price 540 р.
+              .secondary-item-info
+                .ingredients 
+                  %span.anchor Ингредиенты
+                  %ul.items 
+                    %li + горчица 20 р. 
+                .delete 
+                  %span.anchor удалить
+          .basket-action 
+            %strong АКЦИЯ
+            %p При заказе на 1000 р. Coca-cola в подарок
+            
+  

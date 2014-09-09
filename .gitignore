@@ -1,0 +1,13 @@
+/.bundle
+/vendor/bundle
+/log/*
+/tmp/*
+/public/assets/*
+/public/uploads/*
+public/uploads/**/*
+**.orig
+rerun.txt
+*.rbc
+*.sassc
+.sass-cache
+.rspec

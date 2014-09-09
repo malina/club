@@ -1,0 +1,18 @@
+.content-full
+  = form_for resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post } do |form|
+    .password-recovery 
+      %h3 Восстановление пароля
+      .form
+        - if flash[:notice]
+          .flash.success 
+            Ссылка для восстановления пароля выслана на ваш e-mail
+            .close
+        - unless resource.errors[:email].empty?
+          %span.alert{style: "width: 100%"} Указанный email не найден, попробуйте еще раз
+        .form-row 
+          .label 
+            = form.label :email, "Ваш e-mail:"
+          .field 
+            = form.email_field :email, :autofocus => true, class: "input-text"
+            = form.submit "Получить пароль", name: nil, class: "btn green"
+            %p.hint Введите e-mail и мы вышлем вам пароль

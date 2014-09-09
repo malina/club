@@ -1,0 +1,12 @@
+%nav.vertical_menu 
+  %menu 
+    %li{class: active_if(controller_name == 'caterers')} 
+      %a{href: edit_caterer_path(@caterer)} Основные
+    %li{class: active_if(controller_name == 'gen')}
+      %a{href: edit_caterer_gen_path(@caterer)} Информация и SEO
+    %li{class: active_if(controller_name == 'branches')} 
+      %a{href: caterer_branches_path(@caterer)} Филиалы
+    %li{class: active_if(controller_name == 'default_delivery_zone')} 
+      %a{href: edit_caterer_default_delivery_zone_path(@caterer)} Зона доставки по умолчанию
+    %li{class: active_if(controller_name == 'delivery_zones')} 
+      %a{href: caterer_delivery_zones_path(@caterer)} Зоны доставки

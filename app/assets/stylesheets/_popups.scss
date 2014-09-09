@@ -1,0 +1,141 @@
+// Overlay windows
+.info-window{
+position: fixed;
+background: rgba(#000,0.5);
+z-index: 999;
+text-align: center;
+overflow: hidden;
+top: 0;bottom: 100%;right: 100%;left: 0;
+overflow-y: auto;
+overflow: auto;
+overflow-x: hidden;
+  .inner{
+  padding: $pd*3;
+  @include border-radius(4px);
+  background-color: #fff;
+  @include box-shadow(0 0 5px rgba(0,0,0,.03), 0 1px 3px rgba(0,0,0,.25), inset 0 1px rgba(255,255,255,.75));
+  min-height: 160px;
+  margin: 150px auto 0;
+  display: inline-block;
+  text-align: left;
+  position: relative;
+  top: -2000px;
+  @include delay(.5s);
+  @include trans(0.3s);
+    h3{
+    font-size: 18px;
+    margin-bottom: $pd*2;
+    font-weight: normal;
+    background: none;
+    color: #000;
+    }
+    h4{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: $pd*2;
+    color: #000;
+    }
+    li{
+    margin: 0 0 $pd*1.2 0;
+    position: relative;
+      a{text-decoration: none;}
+      &:hover{
+        .delete-this{
+        display: inline;
+        }
+      }
+      .anchor{
+      color: $green_middle;
+      border-bottom: 1px dotted;
+      @include trans(0.2s);
+      cursor: pointer;
+        &:hover{
+        color: #000;
+        border-bottom-color: transparent;
+        }
+      }
+      .delete-this{
+      font-size: 11px;
+      color: $black_light;
+      cursor: pointer;
+      border-bottom: 1px dotted;
+      position: absolute;
+      right: 0;
+      top: auto;
+      display: none;
+      @include trans(0.2s);
+        &:hover{
+        color: #000;
+        border-bottom-color: transparent;
+        }
+      }
+      .add-address{
+      color: $black_light;
+      cursor: pointer;
+      border-bottom: 1px dotted;
+      @include trans(0.2s);
+        &:hover{
+        color: #000;
+        border-bottom-color: transparent;
+        }
+      }
+    }
+    .close{
+    position: absolute;
+    right: $pd*2;
+    top: $pd*2;
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    @include spr(close);
+    display: block;
+    color: transparent;
+    font-size: 0;
+      &:hover{
+      @include spr(close_hover);
+      }
+    }
+  }
+  &.show{
+  top: 0;bottom: 0;right: 0;left: 0;
+    .inner{
+    top: 0;
+    }
+  }
+}
+
+.window-select-city{
+width: 660px;
+  .col{
+  width: 33%;
+  @extend %bb;
+    &.cities{
+    border-right: 1px solid #e5e5e5;
+    }
+    &.regions{
+    width: 66%;
+      h4{padding-left: $pd*3;}
+      ul{
+      width: 48%;
+      display: inline-block;
+      vertical-align: top;
+      padding-left: $pd*3;
+      @extend %bb;
+      }
+    }
+  }
+}
+.window-select-adress{
+width: 410px;
+  .col ,ul,li{
+  width: 100%;
+  }
+}
+
+.window-select-metro{
+width: 660px;
+  img{
+  display: block;
+  margin: 0 auto;
+  }
+}

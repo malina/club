@@ -1,0 +1,86 @@
+= render 'caterers/units/billboard'
+/ - flash.each do |key, value|
+/   = content_tag(:div, value, :class => "flash #{key}")
+.inner-content
+  %aside.left-column
+    = render 'caterers/edit/left_menu'
+  .content
+    = form_for delivery_zone, url: caterer_default_delivery_zone_path(@caterer) do |form|
+      .form.edit-zones
+        - if flash[:notice]
+          .flash.success{"ng-controller" => "SelectCtrl", "ng-show" => "!opened"}
+            Информация о заведении успешно сохранена
+            .close{"ng-click" => "opened = true"}
+
+        .form-row 
+          .label
+            %label Часы работы:
+          .field
+            %ul.opening-hours
+              - ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"].each_with_index do |day, i|
+                %li{'ng-controller' => 'SelectCtrl', 'ng-init' => "opened = #{!!delivery_zone.schedule[i.to_s]["operate"] if delivery_zone.schedule[i.to_s]}"}
+                  %input{"name" => "delivery_zone[schedule][#{i}][operate]", "type" => "checkbox", "id" => i, "ng-model" => "opened", "value" => :true}
+                  %label{"for" => i}= day
+                  .interval{"ng-class" => "classIf('show', opened)"}
+                    - [:open, :close].each do |kind|
+                      - options = []
+                      - 0.step(23, 1){|h| 0.step(45, 15){|m| options << {name: "#{h}:#{m}", id: "#{h}-#{m}", selected: (delivery_zone.schedule[i.to_s][kind.to_s] == "#{h}-#{m}" if delivery_zone.schedule[i.to_s])}}}
+                      .select-box{'ng-controller' => 'SelectCtrl', "ng-init" => "options = #{options.to_json}", "ng-class" => "classIf('drop-down', opened)"}
+                        .selected{'ng-click' => 'opened = !opened', "ng-bind" => "selected().name"}
+                        %input{"name" => "delivery_zone[schedule][#{i}][#{kind}]", "type" => "hidden", "value" => "{{selected().id}}"}
+                        %ul
+                          %li{'ng-repeat' => 'option in options', 'ng-click' => "select(option)" } {{option.name}}
+                      - if kind == :open
+                        %span &rarr;
+        
+        .form-row 
+          .label
+            %label{:for => ""} Время доставки:
+          .field
+            - options = []
+            - 10.step(180, 10){|m| options << {name: "#{m} Минут", id: "#{m}", selected: (delivery_zone.delivery_time == "#{m}")}}
+            .select-box{'ng-controller' => 'SelectCtrl', "ng-init" => "options = #{options.to_json}", "ng-class" => "classIf('drop-down', opened)"}
+              .selected{'ng-click' => 'opened = !opened', "ng-bind" => "selected().name"}
+              %input{"name" => "delivery_zone[delivery_time]", "type" => "hidden", "value" => "{{selected().id}}"}
+              %ul 
+                %li{'ng-repeat' => 'option in options', 'ng-click' => "select(option)" } {{option.name}}
+                
+        .form-row 
+          .label
+            %label{:for => ""} Варианты оплаты:
+          .field
+            %ul 
+              - [{visa: 'Visa'}, {mastercard: 'MasterCard'}, {amex: 'AmEx'}, {cash: 'Наличными курьеру'}].each_with_index do |option, i|
+                %li
+                  %input{type: :checkbox, name: "delivery_zone[payment_options][#{i}]", id: option.keys[0], value: option.keys[0], checked: (!!delivery_zone.payment_options[i.to_s] if delivery_zone.payment_options)}
+                  %label{for: option.keys[0]}= option.values[0]
+
+        .form-row 
+          .label
+            %label{for: "teaser"} Доп. информация:
+          .field
+            %textarea.text-area{name: "delivery_zone[teaser]", id: "teaser"}= delivery_zone.teaser
+
+        .form-row
+          .label
+            %label{:for => "minimum_order_value"} Минимальная сумма закза:
+          .field{'ng-controller' => 'SelectCtrl', "ng-init" => "amount = '#{delivery_zone.minimum_order_value}'"}
+            %input.input-text{"id" => "minimum_order_value", "type" => "text", "name" => "delivery_zone[minimum_order_value]", "ng-model" => "amount", "ng-show" => "!opened", "ng-init" => "opened = #{delivery_zone.minimum_order_value == 0}"}
+              %div.additional-field
+                %input{"type" => "checkbox", "id" => "no_minimum_order_value", "ng-model" => "opened", "ng-change" => "amount = 0"}
+                %label{for: "no_minimum_order_value"} Без минимальной стоимости
+
+        .form-row
+          .label
+            %label{:for => "delivery_charge"} Стоимость доставки:
+          .field{'ng-controller' => 'SelectCtrl', "ng-init" => "amount = '#{delivery_zone.delivery_charge}'"}
+            %input.input-text{"id" => "delivery_charge", "type" => "text", "name" => "delivery_zone[delivery_charge]", "ng-model" => "amount", "ng-show" => "!opened", "ng-init" => "opened = #{delivery_zone.delivery_charge == 0}"}
+              %div.additional-field
+                %input{"type" => "checkbox", "id" => "no_delivery_charge", "ng-model" => "opened", "ng-change" => "amount = 0"}
+                %label{for: "no_delivery_charge"} Бесплатно
+
+                
+        .form-row
+          .actions.bottom
+            = form.submit "Сохранить изменения", class: "btn green save"
+            %input.btn.grey.cancel{:type => "submit", :value => "Отменить"}/

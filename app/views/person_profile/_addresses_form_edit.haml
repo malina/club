@@ -1,0 +1,41 @@
+%h3 
+  Адреса:
+  %a.btn.green{:href => "#", :class=> "add-address"} Добавить адрес 
+%form{:action => ""} 
+  .form.addresses-form
+    .form-row 
+      .field
+        %strong.label Город:
+        .select-box
+          .selected Москва
+          %ul 
+            %li Рим
+            %li Милан
+        %strong.label Ближайшее метро:
+        .select-box
+          .selected Сокол
+          %ul 
+            %li Рим
+            %li Милан
+    .form-row
+      .field
+        %strong.label Улица:
+        -# При валидации класс error
+        %input.input-text.error{:type => "text"}/ 
+        %strong.label Дом:
+        %input.input-text.short{:type => "text"}/ 
+    .form-row
+      .field
+        %strong.label Корпус:
+        %input.input-text.short{:type => "text"}/
+        %strong.label Квартира:
+        %input.input-text.short{:type => "text"}/
+        %strong.label Подъезд:
+        %input.input-text.short{:type => "text"}/
+        %strong.label Этаж:
+        %input.input-text.short{:type => "text"}/ 
+    .form-row
+      .actions.bottom
+        %input.btn.green.save{:type => "submit", :value => "Сохранить изменения"}/
+        %span.anchor.cancel Отменить
+    

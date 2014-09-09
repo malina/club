@@ -1,0 +1,99 @@
+// .person_profile-show{
+[class*="person_profile"]{
+  .top-control-block{
+  height: 60px;
+  background: url(/images/bg/header.jpg) center -100px no-repeat;
+  }
+  .form{
+  margin: 0 0 40px 0;
+  position: relative;
+    .form-row{
+      .phone-prefix{width: 50px;margin: 0 $pd/2;}
+      .phone-sufix{width: 90px;margin: 0 $pd/2;}
+      ul{width: 100%;}
+      .field{
+        p{
+        line-height: 28px;
+        }
+      }
+      .actions {
+        .save, .cancel{
+        float: none;
+        margin-right: 20px;
+        }
+        .cancel{
+        color: $black_middle;
+          &:hover{
+          border-bottom: 1px solid transparent;
+          }
+        }
+      }
+    }
+    .edit-this{
+    position: absolute;
+    right: 30px;
+    top: 35px;
+    @extend %normspace;
+      .anchor{
+      color: $black_middle;
+      }
+    }
+  }
+  h3{
+  background: url(/images/theme/line.png) bottom left repeat-x;
+  padding-bottom: 7px;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 $pd 0;
+  overflow: hidden;
+    .change-password, .add-address{
+    float: right;
+    }
+  }
+}
+.addresses-form{
+  .form-row{
+    .field {
+    width: 100%;
+      .label, .select-box{
+      display: inline-block;
+      vertical-align: middle;
+      }
+      .label{
+      width: auto;
+        &:first-child{
+        width: 65px;
+        }
+      }
+      .select-box{
+      margin-right: 92px;
+      width: 200px;
+      }
+      .input-text{
+      width: 465px;
+      margin-right: 45px;
+        &.short{width: 80px;margin-right: 20px;}
+      }
+    }
+  }
+  &.editable{
+    .form-row{
+      .value, .label{
+      vertical-align: middle;
+      display: inline-block;
+      }
+      .label{
+      width: 80px;
+        &:first-child{
+        width: 190px;
+        }
+      }
+      .value+.value{
+      width: 110px;
+      }
+      .value{
+      width: 250px;
+      }
+    }
+  }
+}

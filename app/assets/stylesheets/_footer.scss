@@ -1,0 +1,98 @@
+.footer{
+background: #232221;
+color: #fff;
+  .footer-menu{
+    .inner-content{
+    padding: $pd*4 $pd*1.5 $pd*3.5 $pd*1.5;
+    }
+    .col{
+    width: 25%;
+      &:nth-of-type(5n+5){
+      display: none;
+      }
+      &:first-child{
+        ul{padding-left: $pd*3;}
+      }
+    }
+    @media screen and (min-width: $window-large) {
+      .col{
+      width: 20%;
+        &:nth-of-type(5n+5){
+        display: inline-block;
+        }
+      }
+    }
+    a{color: #fff;}
+    li{
+    margin: 0 0 $pd 0;
+    }
+    .link-with-icon{
+    text-align: center;
+    display: block;
+    margin: 0 $pd*6;
+      .icon{
+      display: block;
+      height: 55px;
+      text-align: center;
+      margin-bottom: $pd*2;
+      }
+      .link{
+      font-size: 1.15em;
+      font-weight: bold;
+      line-height: 20px;
+      }
+    }
+  }
+  .bottom{
+  background: #1a1919;
+  color: #808080;
+  font-size: .84em;
+  line-height: 15px;
+    .inner-content{
+    overflow: hidden;
+    padding: $pd*3 $pd*6 $pd*2.5 $pd*6;
+    }
+    .copyrights{
+    float: left;
+      strong,a{display: block;}
+      a{color: #808080;}
+      strong{margin: $pd 0 0 0;}
+    }
+    .socials{
+    float: right;
+      a{
+      text-decoration: none;
+      color: transparent;
+      }
+      p{margin: 0 0 $pd 0;}
+      .icon{
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      vertical-align: top;
+      margin-right: 8px;
+      background: url(/images/theme/socials.png) 0 0 no-repeat;
+        &.vk{background-position: 0 0;}
+        &.ok{background-position: -31px 0;}
+        &.fb{background-position: -31px*2 0;}
+        &.tw{background-position: -31px*3 0;}
+        &.lj{background-position: -31px*4 0;}
+      }
+    }
+  }
+}
+.caterers-edit, /*.caterers-show, .caterer_reviews-index, .person_profile-show*/{
+  .footer{
+    .footer-menu{
+      .col{
+        width: 25%;
+        &:nth-of-type(5n+5){
+        display: none;
+        }
+        &:first-child{
+          ul{padding-left: $pd*3;}
+        }
+      }
+    }
+  }
+}

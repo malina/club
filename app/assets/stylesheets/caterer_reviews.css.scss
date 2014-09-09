@@ -1,0 +1,103 @@
+.caterer_reviews-index{
+  .restourant{
+  margin: 0 auto;
+  padding-top: $pd*2;
+  }
+  h3{
+  background: url(/images/theme/line.png) bottom left repeat-x;
+  padding-bottom: 7px;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 $pd 0;
+    .count{
+    font-weight: normal;
+    }
+  }
+  .flash{
+    .btn{margin: 0 $pd*2 0 0;}
+  }
+  .main-content{
+    .right-column,.content{
+    padding-top: $pd*2;
+    }
+    .content{
+    width: 720px;
+    margin-left: $pd*3;
+      @media screen and (min-width: $window-large) {
+      width: 970px;
+      }
+    }
+    .right-column{
+      .vertical_menu{
+      margin: $pd*2.5 0 0 0;
+      }
+    }
+  }
+  // .flash{
+  //   @media screen and (min-width: $window-large) {
+  //   width: 1190px;
+  //   }
+  // }
+}
+.comments{
+margin: $pd*2 0 0 0;
+  .comment{
+  padding: 0 0 $pd*2 0;
+  background: url(/images/theme/line.png) bottom left repeat-x;
+  margin: 0 0 $pd*3.5 0;
+    .comment-title{
+    margin: 0 0 $pd*1.5 0;
+    position: relative;
+      .align-right{}
+      .name{
+      font-size: 15px;
+      margin: 0 5px 0 0;
+      }
+      .date{
+      font-size: 11px;
+      color:$black_middle;
+      }
+      .anchor{
+      color:$black_middle;
+      margin-left: $pd*3;
+        &:hover{
+        border-bottom: 1px dotted transparent;
+        }
+      }
+    }
+    .comment-body{
+    line-height: 1.5;
+    }
+    .comment-footer{
+      
+    }
+    .comment-response{
+    @include border-radius(5px);
+    background-color: #fff;
+    border: solid 1px #e6e1dc;
+    padding: $pd*1.5 $pd*2;
+    margin: $pd*1.5 0 0 0;
+    line-height: 1.5;
+    position: relative;
+      .comment-title{
+      margin: 0 0 $pd*1.5 0;
+      position: relative;
+      margin: 0 0 5px 0;
+        .name{
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 13px;
+        }
+      }
+      &:before{
+      content: "";
+      position: absolute;
+      left: 30px;
+      bottom: 100%;
+      width: 0;
+      border: 5px solid transparent;
+      border-bottom: 5px solid #fff;
+      }
+    }
+  }
+}

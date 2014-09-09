@@ -1,0 +1,43 @@
+.top
+  .inner-content
+    .logo
+      - logo = image_tag("logo.png", :alt => "Order Club - Клуб покупателей")
+      = link_to logo, root_path
+    .counter-block
+      .counter
+        .count.count-1 
+        .count.count-2 
+        .count.count-3 
+        .count.count-4 
+        .count.count-5 
+        .count.count-6 
+      %strong заказов сегодня
+    - if signed_in?
+      .user-informaion.entered
+        %span.user-name= current_person.name
+        %menu.user-menu 
+          %li 
+            = link_to "Профайл" , root_path
+          %li 
+            = link_to "Мои заказы" , root_path
+          %li{:class=>"active"}
+            = link_to "Бонусы" , root_path
+          %li
+            = form_for :session, url: destroy_person_session_path, method: :delete do |form|
+              = form.submit "Выйти", name: nil
+        -# %span.points 2050 баллов
+    - else
+      .user-informaion{"ng-click" => "popped = !popped"}
+        %span Войти
+        %span /
+        %span Регистрация
+.breadcrumb
+  .inner-content
+    = link_to "Home", root_path , :class=>"home"
+    = link_to "Доставка еды", root_path
+
+    .support-service
+      %span служба поддержки 
+      .phone 
+        +7 (495)
+        %strong 663-77-22

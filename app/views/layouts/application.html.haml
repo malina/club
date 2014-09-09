@@ -1,0 +1,21 @@
+!!! 5
+%html{'ng-app' => 'orderClub'}
+  %head
+    %title= content_for?(:title) ? yield(:title) : Rails.application.class.parent_name
+    = stylesheet_link_tag :application, media: :all
+    = javascript_include_tag :application
+    /[if lt IE 9]
+      = javascript_include_tag :html5
+    = csrf_meta_tags
+    :javascript
+      var aToken = '#{form_authenticity_token}';
+  %body
+    %div.all-wrapper{:class => "#{params[:controller]}-#{params[:action]}"}
+      %header.header.show-login1{'ng-controller' => 'HeaderCtrl'}
+        - unless signed_in?
+          = render 'layouts/login'
+        = render 'layouts/header'
+      .main-content 
+        = yield
+      = render 'layouts/footer'
+      -# = render 'layouts/popups'

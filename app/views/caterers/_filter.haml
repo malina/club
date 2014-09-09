@@ -1,0 +1,24 @@
+.filter
+  %h4.title Кухня/блюда:
+  .filter-form
+    - Cuisine.each_with_index do |cuisine, i|
+      .form-row
+        %input{"type" => "checkbox", "name" => cuisine.id, "value" => cuisine.id, 'id' => cuisine.id, "ng-model" => "cuisines[#{i}]", "ng-true-value" => cuisine.id, "ng-false-value" => ''}
+        %label{"for" => cuisine.id}= cuisine.name
+        
+    -# .additional-actions
+    -#   %span.anchor Еще
+  %h4.title Критерии:
+  .filter-form
+    - [{title: "Бесплатная доставка", id: "free_delivery"}, {title: "Оплата картами", id: "payment_cards"}, {title: "Оплата баллами", id: "payment_points"}, {title: "Акции", id: "promotions"}, {title: "Открыты сейчас", id: "now_open"}, {title: "Новые", id: "new"}].each_with_index do |option, i|
+      .form-row
+        %input{"type" => "checkbox", "name" => option[:id], "value" => option[:id], 'id' => option[:id], "ng-model" => "options[#{i}]", "ng-true-value" => option[:id], "ng-false-value" => ''}
+        %label{"for" => option[:id]}= option[:title]
+    -# .additional-actions.reset
+    -#   %span.anchor{"ng-click" => "reset()"} Сбросить
+.text-block
+  %p Хотите заказать пиццу в Санкт-Петербурге? Delivery Club знает лучший способ как найти пиццерию и заказать доставку пиццы к вам.
+  %h4 Кто мы?
+  %p Мы уверены, что представленные на нашем сайте пиццерии смогут удовлетворить любые ваши пожелания. Здесь есть как сытные американские пиццы, так классические пиццы по итальянской рецептуре, а уникальные пиццы от шэф-поваров ресторанов точно затмят своим вкусом. Сэкономить время на обеде в офисе или отпраздновать день рождения с коллегами, посмотреть хорошее кино или провести чудесный вечер с друзьями, в любой из ситуации доставка пиццы будет актуальна.
+  %h4 Бонусные баллы
+  %p Каждый заказ пиццы на нашем сайте сопровождается дополнительными бонусными баллами.  

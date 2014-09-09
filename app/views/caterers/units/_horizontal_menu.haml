@@ -1,0 +1,16 @@
+%nav.horizontal_menu 
+  %menu 
+    %li 
+      %a{:href => ""} Меню
+      
+    %li{:class => active_if(action_name == 'show')}
+      %a{:href => caterer_path(@caterer)} Информация
+      
+    %li{:class => active_if(false)}
+      %a{:href => ""} Отзывы
+      
+    %li{:class => active_if((action_name == 'edit') || (action_name == "index"))}
+      %a{:href => edit_caterer_path(@caterer)} Настройки
+      
+    %li{:class => active_if(false)}
+      %a{:href => ""} Отчет

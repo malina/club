@@ -1,0 +1,74 @@
+.form-row 
+  .label= form.label :city_id, "Город:"
+  .field
+    - options = City.all.only(:name, :id).map{|c| {name: c.name, id: c.id, selected: (caterer.city_id == c.id)}}
+    - options += [{name: 'Выберите город', id: 0, selected: true}] if action_name == 'new'
+    .select-box{'ng-controller' => 'SelectCtrl', "ng-init" => "options = #{options.to_json}", "ng-class" => "classIf('drop-down', opened)"}
+      .selected{'ng-click' => 'opened = !opened', "ng-bind" => "selected().name"}
+      = form.hidden_field :city_id, value: "{{selected().id}}"
+      %ul
+        %li{'ng-repeat' => 'option in options', 'ng-click' => "select(option)"} {{option.name}}        
+
+        
+.form-row
+  .label= form.label :name, "Название:"
+  .field= form.text_field :name, class: 'input-text'
+
+
+.form-row.avatar
+  .label
+    %label{:for => ""} Аватар: 
+  .field{'ng-controller' => 'FileUploadCtrl', 'ng-init' => "file = '#{caterer.avatar_filename}'"}
+    .btn.green.input-file 
+      Обзор 
+      = form.file_field :avatar, "onchange" => "angular.element(this).scope().set(this)"
+      = form.hidden_field :avatar_cache
+    %input.input-text{"ng-model" => "file"}
+
+
+.form-row
+  .label
+    %label Кухни: 
+  .field
+    - Cuisine.all.in_groups_of((Cuisine.all.size / 2).to_i) do |group|
+      %ul
+        - group.each do |cuisine|
+          - if cuisine
+            %li  
+              %input{type: "checkbox", name: 'caterer[cuisine_ids][]', value: cuisine.id, id: cuisine.id, checked: form.object.cuisine_ids.include?(cuisine.id)}
+              %label{for: cuisine.id}= cuisine.name
+
+
+.form-row 
+  .label
+    %label{:for => ""} Время реакции на заказ:
+  .field
+    - options = (1..12).to_a.map{|d| {name: "#{d*10} минут", id: d*10, selected: (form.object.response_time == d*10)}}
+    .select-box{'ng-controller' => 'SelectCtrl', "ng-init" => "options = #{options.to_json}", "ng-class" => "classIf('drop-down', opened)"}
+      .selected{'ng-click' => 'opened = !opened', "ng-bind" => "selected().name"}
+      = form.hidden_field :response_time, value: "{{selected().id}}"
+      %ul
+        %li{'ng-repeat' => 'option in options', 'ng-click' => "select(option)" } {{option.name}}        
+
+
+/ .form-row 
+/   .label
+/     %label{:for => ""} Доступ на редактирование для представителя заведения:
+/   .field
+/     %ul 
+/       %li 
+/         = check_box_tag(:main_settings)
+/         = label_tag(:main_settings, "Основные настройки")
+/       %li  
+/         = check_box_tag(:seo)
+/         = label_tag(:seo, "Информация и SEO")
+/       %li  
+/         = check_box_tag(:zones)
+/         = label_tag(:zones, "Зоны доставки")
+/       %li  
+/         = check_box_tag(:branches)
+/         = label_tag(:branches, "Филиалы")
+
+.form-row 
+  .label= form.label :about, "О ресторане:"
+  .field= form.text_area :about, class: 'text-area'

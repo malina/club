@@ -1,0 +1,25 @@
+= render 'caterers/units/billboard'
+/ - flash.each do |key, value|
+/   = content_tag(:div, value, :class => "flash #{key}")
+.inner-content
+  %aside.left-column
+    = render 'caterers/edit/left_menu'
+  .content 
+    = form_for @caterer do |form|
+      .form.edit-main
+        - if flash[:notice]
+          .flash.success{"ng-controller" => "SelectCtrl", "ng-show" => "!opened"}
+            Информация о заведении успешно сохранена
+            .close{"ng-click" => "opened = true"}
+        
+        = render 'caterers/units/caterer_fields', caterer: @caterer, form: form
+        .form-row
+          .actions.bottom
+            %input.btn.green.save{:type => "submit", :value => "Сохранить изменения"}
+            %input.btn.grey.cancel{:type => "submit", :value => "Отменить"}
+    
+  
+  / = render 'caterers/edit/edit_main_info'
+  / = render 'caterers/edit/edit_info_seo'
+  / = render 'caterers/edit/edit_branches'
+  / = render 'caterers/edit/edit_zones'

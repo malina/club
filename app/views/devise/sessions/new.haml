@@ -1,0 +1,16 @@
+.content-full
+  = form_for resource, :as => resource_name, :url => session_path(resource_name) do |form|
+    .password-recovery 
+      %h3 Вход
+      .form
+        - if failed_login?
+          %span.alert{style: "width: 100%"} Логин или пароль указаны неверно, попробуйте еще раз
+        .form-row
+          .label= form.label :email, "E-mail:"
+          .field= form.email_field :email, autofocus: true, class: "input-text"
+        .form-row 
+          .label= form.label :password, "Пароль:"
+          .field= form.password_field :password, class: "input-text"
+        .form-row
+          .actions
+            = form.submit "Войти", name: nil, class: "btn green"

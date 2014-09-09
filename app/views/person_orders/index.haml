@@ -1,0 +1,141 @@
+.top-control-block
+  -#= render 'layouts/horizontal_menu'
+.content-full 
+  .orders
+    .order
+      .item-content
+        .restourant-logo
+          = image_tag("http://placehold.it/90x90")
+        .order-info
+          .restourant-info
+            %h2.title Васаби
+            %span.cuisine Японская, Китайская
+            %strong.order-placed Заказ размещен
+            %span.date 20 сентября 2014, в 14:00
+          .order-detail
+            %h3 Детали заказа
+            %table.order-items 
+              %tbody 
+                %tr 
+                  %td Филадельфия Роял
+                  %td 1
+                  %td 270 руб
+                %tr 
+                  %td Игай яки
+                  %td 7
+                  %td 365 руб
+                %tr 
+                  %td Доставка
+                  %td 
+                  %td 300 руб
+              %tfoot
+                %tr 
+                  %td 
+                  %td Итог
+                  %td 935 руб
+      .leave-comment 
+        %h3 Оставить отзыв:
+        %form{:action => ""}
+          %textarea.text-area
+          %input.btn.orange{:type => "submit", :value=>"Оставить отзыв"}/  
+          .to-rate
+            .cuisine 
+              %strong Кухня
+              //После нажатия, накинуть класс acive на соответствующий anchor
+              %span.anchor.good Хорошо
+              %span.anchor.bad Плохо
+            .delivery 
+              %strong Доставка
+              %span.anchor.good Хорошо
+              %span.anchor.bad Плохо
+            .service 
+              %strong Сервис
+              %span.anchor.good Хорошо
+              %span.anchor.bad Плохо
+    .order
+      .item-content
+        .restourant-logo
+          = image_tag("http://placehold.it/90x90")
+        .order-info
+          .restourant-info
+            %h2.title Васаби
+            %span.cuisine Японская, Китайская
+            %strong.order-placed Заказ размещен
+            %span.date 20 сентября 2014, в 14:00
+          .order-detail
+            %h3 Детали заказа
+            %table.order-items 
+              %tbody 
+                %tr 
+                  %td Филадельфия Роял
+                  %td 1
+                  %td 270 руб
+                %tr 
+                  %td Игай яки
+                  %td 7
+                  %td 365 руб
+                %tr 
+                  %td Доставка
+                  %td 
+                  %td 300 руб
+              %tfoot
+                %tr 
+                  %td 
+                  %td Итог
+                  %td 935 руб
+      .comments
+        .comment
+          .comment-title
+            %strong.name Евгений
+            %span.date 19 июня в 12:34
+            %span.anchor.edit Редактировать
+            %span.anchor.delete Удалить
+          .comment-body
+            %span.text Еда очень вкусная, суши отличные, доставка тоже довольно быстрая. Вообщем то сервис отличный, рекомендую.
+          .comment-footer 
+            .rate-block
+              .cuisine
+                %strong Кухня
+                .icon.good
+              .delivery
+                %strong Доставка
+                .icon.bad
+              .service
+                %strong Сервис
+                .icon.good
+          .comment-response
+            .comment-title
+              %strong.name Евгений
+            %span.text Унаги спайси ролл за 390 руб совсем не стоит этих денег..просто была безвкусная...остальное все было очень вкусно) Спасибо большое!Все очень понравилось!Во время привезли и все свежее!
+    .order
+      .item-content
+        .restourant-logo
+          = image_tag("http://placehold.it/90x90")
+        .order-info
+          .restourant-info
+            %h2.title Васаби
+            %span.cuisine Японская, Китайская
+            %strong.order-placed Заказ размещен
+            %span.date 20 сентября 2014, в 14:00
+            %span.btn.orange Оставить отзыв
+          .order-detail
+            %h3 Детали заказа
+            %table.order-items 
+              %tbody 
+                %tr 
+                  %td Филадельфия Роял
+                  %td 1
+                  %td 270 руб
+                %tr 
+                  %td Игай яки
+                  %td 7
+                  %td 365 руб
+                %tr 
+                  %td Доставка
+                  %td 
+                  %td 300 руб
+              %tfoot
+                %tr 
+                  %td 
+                  %td Итог
+                  %td 935 руб

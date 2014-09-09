@@ -1,0 +1,50 @@
+.filter{
+margin: $pd*1.5 0 0 0;
+	.title{
+	font-weight: bold;
+	font-size: 1.15em;
+	padding-left: $pd*3;
+	margin: 0 0 $pd 0;
+	}
+	.additional-actions{
+	padding: 4px 0 4px $pd*3;
+		&.reset{
+		margin-top: $pd*3
+		}
+		.anchor{
+		color: $black_light;
+		border-bottom: 1px dotted;
+		cursor: pointer;
+			&:hover{
+			color: #000;
+			border-bottom: 1px solid transparent;
+			}
+		}
+	}
+}
+.filter-form{
+margin: 0 0 $pd*3.5 0;
+	.form-row{
+	padding: 4px 7px;
+	@include trans(0.3s);
+	@include border-radius(3px);
+	position: relative;
+		&:hover{
+		background:#fff;
+		}
+		label, input[type=checkbox]{
+		vertical-align: middle;
+		cursor: pointer;
+		}
+		label{
+		@extend %bb;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		padding: 7px 0;
+		padding-left: $pd*3;
+		}
+	}
+}

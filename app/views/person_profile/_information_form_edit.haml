@@ -1,0 +1,43 @@
+%h3 
+  Информация:
+  %a.btn.grey{:href => "#", :class=> "change-password"} сменить пароль 
+%form{:action => ""} 
+  .form.editable
+    .form-row 
+      .label
+        %label{:for => ""} Ваше имя:
+      .field
+        %input.input-text{:type => "text"}
+    .form-row 
+      .label
+        %label{:for => ""} E-mail:
+      .field
+        %input.input-text{:type => "text"}
+    .form-row 
+      .label
+        %label{:for => ""} Телефон:
+      .field
+        %span +7
+        %input.input-text{:type => "text", :class => "phone-prefix"}
+        %input.input-text{:type => "text", :class => "phone-sufix"}
+    .form-row 
+      .label
+        %label{:for => ""} Варианты оплаты:
+      .field
+        %ul 
+          %li
+            = check_box_tag(:Visa)
+            = label_tag(:Visa, "Получать письма о новинках и спецпредложениях") 
+          %li
+            = check_box_tag(:MasterCard)
+            = label_tag(:MasterCard, "Получать сервисные SMS") 
+          %li
+            = check_box_tag(:AmEx)
+            = label_tag(:AmEx, "Получать служебные письма") 
+    .edit-this 
+      %span.anchor Редактировать
+    .form-row
+      .actions.bottom
+        %input.btn.green.save{:type => "submit", :value => "Сохранить изменения"}/
+        %span.anchor.cancel Отменить
+    

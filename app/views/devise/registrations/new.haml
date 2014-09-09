@@ -1,0 +1,50 @@
+.content-full
+  = form_for resource, :as => resource_name, :url => registration_path(resource_name) do |form|
+    .password-recovery 
+      %h3 Регистрация
+      .form
+        - unless resource.errors[:name].empty?
+          %span.alert{style: "width: 100%"} Имя #{resource.errors[:name][0]}
+
+        - unless resource.errors[:phone].empty?
+          %span.alert{style: "width: 100%"} Телефон #{resource.errors[:phone][0]}
+
+        - unless resource.errors[:email].empty?
+          %span.alert{style: "width: 100%"} Email #{resource.errors[:email][0]}
+
+        - unless resource.errors[:password].empty?
+          %span.alert{style: "width: 100%"} Пароль #{resource.errors[:password][0]}
+      
+        - unless resource.errors[:password_confirmation].empty?
+          %span.alert{style: "width: 100%"} Подтверждение не совпадает с паролем
+
+        - unless resource.errors[:confirm_conditions].empty?
+          %span.alert{style: "width: 100%"} Вы должны согласиться с условиями пользовательского соглашения
+
+          
+          
+        .form-row
+          = form.label :name, "Имя:", class: "label"
+          = form.text_field :name, class: "input-text"
+        .form-row.phone
+          = form.label :phone, "Телефон:", class: "label"
+          = form.hidden_field :phone, value: "{{prefix + suffix}}"
+          %span.code +7 
+          %input.input-text.prefix{"type" => "text", "ng-model" => "prefix", "class" => error_if(!resource.errors[:phone].empty?)}
+          %input.input-text.sufix{"type" => "text", "ng-model" => "suffix", "class" => error_if(!resource.errors[:phone].empty?)}
+        .form-row 
+          = form.label :email, "E-mail:", class: "label"
+          = form.text_field :email, class: "input-text"
+        .form-row
+          = form.label :password, "Пароль:", class: "label"
+          = form.password_field :password, class: "input-text"
+        .form-row
+          = form.label :password_confirmation, "Подтверждение:", class: "label"
+          = form.password_field :password_confirmation, class: "input-text"
+        .form-row
+          .agree 
+            = form.check_box :confirm_conditions
+            = form.label :confirm_conditions, "Согласен с условиями"
+            %a{:href => ""} пользовательского соглашения
+        .form-row 
+          = form.submit "Зарегистрироваться", class: "btn orange", name: nil

@@ -1,0 +1,166 @@
+%div{"ng-controller" => "CaterersCtrl"}
+  %form{:action => "",:class=>"inner-content index-page"}
+    .top-control-block
+      .inner 
+        = render 'caterers/delivery_restaurants'
+    %aside.left-column
+      = render 'filter'
+  .inner-content
+    .content 
+      .restourants
+        .restourant-item{"ng-repeat" => "caterer in caterers"}
+          %a.item-content{:href => "/caterers/{{caterer._id.$oid}}"}
+            .restourant-logo
+              %img{"src" => "{{caterer.avatar_url}}"}
+            .restourant-info
+              %h2.title{"ng-bind" => "caterer.name"}
+              %span.cuisine{"ng-bind" => "cuisines_string(caterer)"}
+              .properties
+                .price
+                  %span.icon
+                  %strong от {{caterer.minimum_order_value}} р.
+                .delivery-price{"ng-switch" => "caterer.delivery_charge"}
+                  %span.icon
+                  %strong{"ng-switch-when" => "0"} Бесплатно
+                  %strong{"ng-switch-default" => true} {{caterer.delivery_charge}} р.
+                .delivery-time
+                  %span.icon
+                  %strong {{caterer.delivery_time}} мин.
+                .raiting 
+                  %span.percent 94%
+                  .icon
+                    .float
+                  %strong Рейтинг
+                  %span.number-votes 39 голосов
+              .information-tip{"ng-show" => "caterer.teaser"}
+                %span {{caterer.teaser}}
+      
+      / .restourant-item.premium
+      /   %a.item-content{:href => "#"}
+      /     .restourant-logo
+      /       = image_tag("http://placehold.it/90x90")
+      /     .restourant-info
+      /       %h2.title Васаби
+      /       %span.cuisine Японская, Китайская
+      /       .properties
+      /         .price
+      /           %span.icon
+      /           %strong от 500 р.
+      /         .delivery-price
+      /           %span.icon
+      /           %strong Бесплатно
+      /         .delivery-time
+      /           %span.icon
+      /           %strong 30 мин.
+      /         .raiting 
+      /           %span.percent 67%
+      /           .icon
+      /             // .float - перекрывающий элемент, значение left которого, соответствует рейтингу
+      /             .float
+      /           %strong Рейтинг
+      /           %span.number-votes 30548 голосов
+      /         .orders-per-day
+      /           %span Заказов за день
+      /           %strong 248
+      /       .information-tip
+      /         %span Минимальная сумма заказа за пределы Садового кольца — 500 р., за пределы МКАД — 1000 р. В пятницу и субботу доставка осуществляется до 6:00.
+      /     .flags
+      /       .flag.new
+      /       .flag.sale
+      /       .flag.points
+      / .restourant-item
+      /   .information-top
+      /     Откроется через
+      /     %span.mode 
+      /       %span.anchor 10 ч. 42 мин.
+      /       //Всплывающая подсказка, появляется по ховеру. Чтобы она центровалась, относительно элемента, нужно передавать есть значение left, сейчас просто присвоены вычисленные значения
+      /       // но мне кажется не так уж критично ее центровать, можно чтобы равнялась по левому краю родителя
+      /       .floating-tip
+      /         .tip-content
+      /           .working-days
+      /             %strong Рабочии дни:
+      /             %p Пн – Пт
+      /             %p Сб – Вс
+      /           .hours 
+      /             %strong Время работы:
+      /             %p 8:00 – 19:00
+      /             %p 10:00 – 15:00
+      /     Возможен только предварительный заказ.
+      /   %a.item-content{:href => "#"}
+      /     .restourant-logo
+      /       = image_tag("http://placehold.it/90x90")
+      /     .restourant-info
+      /       %h2.title Му-Му
+      /       %span.cuisine Русская, Украинская, Японская, Китайская
+      /       .properties
+      /         .price
+      /           %span.icon
+      /           %strong от 200 р.
+      /         .delivery-price
+      /           %span.icon
+      /           %strong Бесплатно
+      /         .delivery-time
+      /           %span.icon
+      /           %strong 60 мин.
+      /         .raiting 
+      /           %span.percent 83%
+      /           .icon
+      /             .float
+      /           %strong Рейтинг
+      /           %span.number-votes 454 голосов
+      /       .information-tip
+      /         %span Доставка блюд японской кухни только в пределах МКАД.
+      /     .flags
+      /       .flag.sale
+      / .restourant-item
+      /   %a.item-content{:href => "#"}
+      /     .restourant-logo
+      /       = image_tag("http://placehold.it/90x90")
+      /     .restourant-info
+      /       %h2.title Сити Пицца
+      /       %span.cuisine Пицца, Итальянская, Европейская
+      /       .properties
+      /         .price
+      /           %span.icon
+      /           %strong от 750 р.
+      /         .delivery-price
+      /           %span.icon
+      /           %strong 200 р.
+      /         .delivery-time
+      /           %span.icon
+      /           %strong 45 мин.
+      /         .raiting 
+      /           %span.percent 37%
+      /           .icon
+      /             .float
+      /           %strong Рейтинг
+      /           %span.number-votes 6470 голосов
+      /     .flags
+      /       .flag.new
+      / .restourant-item
+      /   %a.item-content{:href => "#"}
+      /     .restourant-logo
+      /       = image_tag("http://placehold.it/90x90")
+      /     .restourant-info
+      /       %h2.title Маки-Маки
+      /       %span.cuisine Японская, Китайская
+      /       .properties
+      /         .price
+      /           %span.icon
+      /           %strong от 1000 р.
+      /         .delivery-price
+      /           %span.icon
+      /           %strong Бесплатно
+      /         .delivery-time
+      /           %span.icon
+      /           %strong 90 мин.
+      /         .raiting 
+      /           %span.percent 94%
+      /           .icon
+      /             .float
+      /           %strong Рейтинг
+      /           %span.number-votes 39 голосов
+      /       .information-tip
+      /         %span Возможна оплата банковскими картами. Возможна доставка в Дзержинский.
+      /     .flags
+      /       .flag.points

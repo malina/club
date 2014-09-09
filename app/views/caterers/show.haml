@@ -1,0 +1,45 @@
+= render 'caterers/units/billboard'
+.inner-content
+  .content
+    %h3 Информация
+    .information-about
+      %div.specialization 
+        %strong Специализация:
+        .text= @caterer.cuisines.map(&:name).join(', ')
+      %div.hours 
+        %strong  Время работы:
+        .text
+          %span.days ПН-ПТ 
+          %span.time 10 : 00 - 22 : 00
+          %span.days СБ-ВС 
+          %span.time 10 : 00 - 01 : 00
+      %div.payment-options 
+        %strong  Варианты оплаты:
+        - if @caterer.payment_options
+          .text
+            - if @caterer.payment_options.values.include? 'visa'
+              %span.pay.visa 
+            - if @caterer.payment_options.values.include? 'mastercard'
+              %span.pay.mc
+            - if @caterer.payment_options.values.include? 'cash'
+              %span.pay Наличными курьеру
+    %h3 О ресторане:
+    %p= @caterer.about
+    %h3 Вам нравится «Васаби»?
+    .social_likes 
+    .navigation-by-venue 
+      %a{:href => "", :class =>"go-to-menu"} Перейти в меню
+      %span или
+      %a{:href => "", :class =>"go-to-reviews"} Прочитать отзывы
+  %aside.right-column
+    %h3 Филиалы 
+    .branches-column
+      .map
+      .addresses 
+        %h3 Адреса филиалов:
+        %ul 
+          - @caterer.branches.each do |branch|
+            %li= branch.address
+
+        / .show-all 
+        /   %span.anchor Показать еще 13 филиалов

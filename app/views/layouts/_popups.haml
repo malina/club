@@ -1,0 +1,105 @@
+-# Для отображения всплывающего окна добавить класс .show
+-# А на body нужно накинуть класс lock
+-#---
+-#На самом деле эти окна не обязательно в отдельный partial помещать
+.info-window
+  .inner
+    .close x
+    %h3 Выберите город:
+    .window-select-city.row
+      .col.cities
+        %h4 Россия
+        %ul
+          %li 
+            %span.anchor Москва
+          %li 
+            %span.anchor Санкт-Петербург
+          %li 
+            %span.anchor Екатеринбург
+          %li 
+            %span.anchor Нижний Новгород
+          %li 
+            %span.anchor Новосибирск
+          %li 
+            %span.anchor Самара
+          %li 
+            %span.anchor Казань
+          %li 
+            %span.anchor Ростов-на-Дону
+          %li 
+            %span.anchor Саратов
+          %li 
+            %span.anchor Уфа
+          %li 
+            %span.anchor Челябинск
+      .col.regions
+        %h4 Московская область
+        %ul
+          %li 
+            %span.anchor Балашиха
+          %li 
+            %span.anchor Домодедово
+          %li 
+            %span.anchor Железнодорожный
+          %li 
+            %span.anchor Жулебино
+          %li 
+            %span.anchor Зеленоград
+          %li 
+            %span.anchor Кожухово
+          %li 
+            %span.anchor Королев
+          %li 
+            %span.anchor Красногорск
+          %li 
+            %span.anchor Люберцы
+          %li 
+            %span.anchor Мытищи
+        %ul 
+          %li 
+            %span.anchor Одинцово
+          %li 
+            %span.anchor Подольск
+          %li 
+            %span.anchor Реутов
+          %li 
+            %span.anchor Сергиев Посад
+          %li 
+            %span.anchor Серпухов
+          %li 
+            %span.anchor Солнцево
+          %li 
+            %span.anchor Химки
+          %li 
+            %span.anchor Щербинка
+          %li 
+            %span.anchor Юбилейный
+
+.info-window
+  .inner
+    .close x
+    %h3 Выберите адрес доставки:
+    .window-select-adress.row
+      .col 
+        %ul
+          %li 
+            %span.anchor Москва, ул. Старый Арбат, д.1
+            %span.delete-this удалить
+          %li 
+            %span.anchor Москва, ул. Тверская-Ямская, д. 24, кв. 308
+            %span.delete-this удалить
+          %li 
+            %span.anchor Санкт-Петербург, ул. Рабочая, д. 16, кв. 45
+            %span.delete-this удалить
+          %li 
+            %span.anchor Новосибирск, ул. Ленина, д. 4, кв. 88
+            %span.delete-this удалить
+          %li 
+            %span.add-address Добавить адрес
+
+.info-window
+  .inner
+    .close x
+    %h3 Выберите станцию метро:
+    .window-select-metro.row
+      = image_tag("/images/theme/metro-map.jpg")

@@ -1,0 +1,64 @@
+.delivery-from-restaurants
+  .row 
+    .col.col-3-4.offset-1-4
+      .col-content 
+        %h1.title Доставка еды из ресторанов
+        .select-location
+          %span.city-name= @city.name        
+          .switch-city{"ng-controller" => "SelectCtrl"}
+            %span.anchor{"ng-click" => "opened = !opened"} изменить город
+            .info-window{"ng-class" => "classIf('show', opened)"}
+              .inner
+                .close{"ng-click" => "opened = !opened"} x
+                %h3 Выберите город:
+                .window-select-city.row
+                  .col.cities
+                    %h4 Россия
+                    %ul
+                      - City.each do |city|
+                        %li
+                          %a{href: city_caterers_path(city)}
+                            %span.anchor= city.name
+                  .col.regions
+                    %h4 Московская область
+                    %ul
+                      - City.each do |city|
+                        %li
+                          %a{href: city_caterers_path(city)}
+                            %span.anchor= city.name
+                      
+                    %ul 
+                      - City.each do |city|
+                        %li
+                          %a{href: city_caterers_path(city)}
+                            %span.anchor= city.name
+            
+
+          - options = [{name: 'Выберите станцию метро', id: 0, selected: true}] + City.first.districts.only(:name, :id).map{|d| {name: d.name, id: d.id}}
+          .select-box.select-metro{'ng-controller' => 'SelectCtrl', "ng-init" => "options = #{options.to_json}; name = 'district'", "ng-class" => "classIf('drop-down', opened)"}
+            .selected{'ng-click' => 'opened = !opened', "ng-bind" => "selected().name"}
+            %ul
+              %li{  'ng-repeat' => 'option in options', 'ng-click' => "select(option)" } {{option.name}}
+
+
+          .metro-map{"ng-controller" => "SelectCtrl"}
+            %span.anchor{"ng-click" => "opened = !opened"} Карта метро
+            .info-window{"ng-class" => "classIf('show', opened)"}
+              .inner
+                .close{"ng-click" => "opened = !opened"} x
+                %h3 Выберите станцию метро:
+                .window-select-metro.row
+                  = image_tag("/images/theme/metro-map.jpg")
+                  
+
+          .sort-block
+            .method.by-condition
+              %div.switch-link{"ng-class" => "classIf('active', set == 'open')", "ng-click" => "set = 'open'"}
+                %span.anchor Открытые
+              %div.switch-link{"ng-class" => "classIf('active', set == 'all')", "ng-click" => "set = 'all'"}
+                %span.anchor Все заведения
+            .method.by-type
+              %div.switch-link{"ng-class" => "classIf('active', sort == 'rating')", "ng-click" => "sort = 'rating'"}
+                %span.anchor По рейтингу
+              %div.switch-link{"ng-class" => "classIf('active', sort == 'min_total')", "ng-click" => "sort = 'min_total'"}
+                %span.anchor По минимальной сумме заказа

@@ -1,0 +1,106 @@
+= render 'caterers/units/billboard'
+/ - flash.each do |key, value|
+/   = content_tag(:div, value, :class => "flash #{key}")
+
+.inner-content
+  %aside.left-column
+    = render 'caterers/edit/left_menu'
+  .content
+    .form.edit-zones{"ng-controller" => "CrudCtrl", "ng-init" => "master = #{@caterer.delivery_zones.to_json}; items = #{@caterer.delivery_zones.to_json}; template = #{@caterer.default_delivery_zone.to_json}"}
+      .flash.success{"ng-show" => "show_success"}
+        Информация о заведении успешно сохранена
+        .close{"ng-click" => "show_success = false"}
+      .form-row
+        .actions.top
+          %a.btn.green.add{"ng-click" => "add()"} Добавить
+          %a.btn.green.save{"ng-click" => "save()", "ng-show" => "isChanged()"} Сохранить изменения
+          
+      .zone{"ng-repeat" => "zone in items"}
+        .form-row
+          .label
+            %label{for: "name_{{zone.$$hashKey}}"} Название:
+          .field
+            %input.input-text{"id" => "name_{{zone.$$hashKey}}", "type" => "text", "ng-model" => "zone.name"}
+        .form-row
+          .label
+            %label Станции метро:
+          .field
+            %ul
+              - @caterer.city.districts.asc(:id).each_with_index do |district, i|
+                %li
+                  %input{"type" => "checkbox", "ng-model" => "zone.selected_districts.#{i}", "ng-true-value" => district.id, "id" => "#{district.id}-{{zone.$$hashKey}}"}
+                  %label{"for" => "#{district.id}-{{zone.$$hashKey}}"}= district.name
+            
+        .form-row{"ng-show" => "!eqls(template.schedule, zone.schedule) || zone.showExtras"}
+          .label
+            %label Часы работы:
+          .field
+            %ul.opening-hours
+              - ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"].each_with_index do |day, i|
+                %li{'ng-controller' => 'SelectCtrl'}
+                  %input{"ng-model" => "zone.schedule.#{i}.operate", "type" => "checkbox", "id" => "{{zone.$$hashKey}}-#{i}", "ng-true-value" => "true"}
+                  %label{"for" => "{{zone.$$hashKey}}-#{i}"}= day
+                  .interval{"ng-class" => "classIf('show', zone.schedule.#{i}.operate)"}
+                    - [:open, :close].each do |kind|
+                      - options = []
+                      - 0.step(23, 1){|h| 0.step(45, 15){|m| options << {name: "#{h}:#{m}", id: "#{h}-#{m}"}}}
+                      .select-box{'ng-controller' => 'SelectCtrl', "ng-init" => "options = #{options.to_json}; name = 'zone.schedule.#{i}.#{kind}'", "ng-class" => "classIf('drop-down', opened)"}
+                        .selected{'ng-click' => 'opened = !opened', "ng-bind" => "selected().name"}
+                        %ul
+                          %li{'ng-repeat' => 'option in options', 'ng-click' => "select(option)" } {{option.name}}
+                      - if kind == :open
+                        %span &rarr;
+      
+        .form-row{"ng-show" => "!(template.delivery_time == zone.delivery_time) || zone.showExtras"}
+          .label
+            %label{:for => ""} Время доставки:
+          .field
+            - options = []
+            - 10.step(180, 10){|m| options << {name: "#{m} Минут", id: "#{m}"}}
+            .select-box{'ng-controller' => 'SelectCtrl', "ng-init" => "options = #{options.to_json}; name = 'zone.delivery_time'", "ng-class" => "classIf('drop-down', opened)"}
+              .selected{'ng-click' => 'opened = !opened', "ng-bind" => "selected().name"}
+              %ul 
+                %li{'ng-repeat' => 'option in options', 'ng-click' => "select(option)" } {{option.name}}
+              
+        .form-row{"ng-show" => "!eqls(zone.payment_options, template.payment_options) || zone.showExtras"}
+          .label
+            %label{:for => ""} Варианты оплаты:
+          .field
+            %ul 
+              - [{visa: 'Visa'}, {mastercard: 'MasterCard'}, {amex: 'AmEx'}, {cash: 'Наличными курьеру'}].each_with_index do |option, i|
+                %li
+                  %input{"type" => "checkbox", "ng-model" => "zone.payment_options.#{i}", "ng-true-value" => option.keys[0], "id" => (option.keys[0].to_s + '{{zone.$$hashKey}}')}
+                  %label{for: (option.keys[0].to_s + '{{zone.$$hashKey}}')}= option.values[0]
+
+        .form-row{"ng-show" => "!(template.teaser == zone.teaser) || zone.showExtras"}
+          .label
+            %label{for: "teaser_{{zone.$$hashKey}}"} Доп. информация:
+          .field
+            %textarea.text-area{"ng-model" => "zone.teaser", "id" => "teaser_{{zone.$$hashKey}}"}
+
+        .form-row{"ng-show" => "!(template.minimum_order_value == zone.minimum_order_value) || zone.showExtras"}
+          .label
+            %label{for: "minimum_order_value_{{zone.$$hashKey}}"} Минимальная сумма закза:
+          .field{'ng-controller' => 'SelectCtrl', "ng-init" => "opened = (zone.minimum_order_value == 0)"}
+            %input.input-text{"id" => "minimum_order_value_{{zone.$$hashKey}}", "type" => "text", "ng-model" => "zone.minimum_order_value", "ng-show" => "!opened"}
+              %div.additional-field
+                %input{"type" => "checkbox", "id" => "no_minimum_order_value_{{zone.$$hashKey}}", "ng-model" => "opened", "ng-change" => "zone.minimum_order_value = 0"}
+                %label{for: "no_minimum_order_value_{{zone.$$hashKey}}"} Без минимальной стоимости
+
+        .form-row{"ng-show" => "!(template.delivery_charge == zone.delivery_charge) || zone.showExtras"}
+          .label
+            %label{:for => "delivery_charge_{{zone.$$hashKey}}"} Стоимость доставки:
+          .field{'ng-controller' => 'SelectCtrl', "ng-init" => "opened = (zone.delivery_charge == 0)"}
+            %input.input-text{"id" => "delivery_charge_{{zone.$$hashKey}}", "type" => "text", "ng-model" => "zone.delivery_charge", "ng-show" => "!opened"}
+              %div.additional-field
+                %input{"type" => "checkbox", "id" => "no_delivery_charge_{{zone.$$hashKey}}", "ng-model" => "opened", "ng-change" => "zone.delivery_charge = 0"}
+                %label{for: "no_delivery_charge_{{zone.$$hashKey}}"} Бесплатно
+                
+        .delete-this
+          %span.anchor{"ng-click" => "delete(zone)"} удалить
+        .show-extras{"ng-show" => "!zone.showExtras"}
+          %span.anchor{"ng-click" => "zone.showExtras = true"} показать расширенные настройки
+        .hide-extras{"ng-show" => "zone.showExtras"}
+          %span.anchor{"ng-click" => "zone.showExtras = false"} скрыть расширенные настройки
+        
+        %hr

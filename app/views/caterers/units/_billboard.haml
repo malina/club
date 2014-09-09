@@ -1,0 +1,42 @@
+.top-control-block
+  .inner-content
+    .restourant
+      .restourant-item
+        .item-content
+          .restourant-logo
+            = image_tag(@caterer.avatar_url)
+          .restourant-info
+            %h2.title= @caterer.name
+            %span.cuisine= @caterer.cuisines.map(&:name).join(', ')
+            .properties
+              .price
+                %span.icon
+                %strong от #{@caterer.minimum_order_value} р.
+              .delivery-price
+                %span.icon
+                - if @caterer.delivery_charge == 0
+                  %strong Бесплатно
+                - else
+                  %strong #{@caterer.delivery_charge} р.
+              .delivery-time
+                %span.icon
+                %strong #{@caterer.delivery_time} мин.
+              .raiting.raiting-kitchen 
+                %span.percent 58%
+                .icon
+                  .float
+                %strong Кухня
+              .raiting.raiting-delivery 
+                %span.percent 83%
+                .icon
+                  .float
+                %strong Доставка
+                %span.number-votes Всего 30548 голосов
+              .raiting.raiting-service 
+                %span.percent 31%
+                .icon
+                  .float
+                %strong Сервис
+            .information-tip
+              %span= @caterer.teaser
+    = render 'caterers/units/horizontal_menu'

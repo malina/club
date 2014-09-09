@@ -1,0 +1,37 @@
+%h3 
+  Информация:
+  %a.btn.grey{:href => "#", :class=> "change-password"} сменить пароль 
+%form{:action => ""} 
+  .form
+    .form-row 
+      .label
+        %label{:for => ""} Ваше имя:
+      .field
+        %p Филипп
+    .form-row 
+      .label
+        %label{:for => ""} E-mail:
+      .field
+        %p filippokfilchenko@gmail.com
+    .form-row 
+      .label
+        %label{:for => ""} Телефон:
+      .field
+        %p +7 952 100 1010
+    .form-row 
+      .label
+        %label{:for => ""} Варианты оплаты:
+      .field
+        %ul 
+          %li
+            = check_box_tag(:Visa)
+            = label_tag(:Visa, "Получать письма о новинках и спецпредложениях") 
+          %li
+            = check_box_tag(:MasterCard)
+            = label_tag(:MasterCard, "Получать сервисные SMS") 
+          %li
+            = check_box_tag(:AmEx)
+            = label_tag(:AmEx, "Получать служебные письма") 
+    .edit-this 
+      %span.anchor Редактировать
+    
